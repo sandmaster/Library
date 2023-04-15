@@ -3,6 +3,7 @@ package org.moondrop.entity;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.LinkedList;
 
 public class Book extends LibraryObject {
 
@@ -107,8 +108,21 @@ public class Book extends LibraryObject {
 
     }
 
-    public boolean removeFromTags(String... tagsToRemove) {
-        return false;
+    /**
+     * method to remove n number of tags from the object.
+     * Only removes existing tags.
+     * @param tagsToRemove the tags to remove
+     */
+    public void removeFromTags(String... tagsToRemove) {
+
+        LinkedList<String> tag_list = new LinkedList<>(Arrays.asList(tags));
+        String[] process_incoming = process_content(tagsToRemove);
+        for (String tag : process_incoming) {
+            tag_list.remove(tag);
+        }
+
+        tags = tag_list.toArray(new String[0]);
+
     }
 
     /**

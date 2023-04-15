@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4f7e51d-8dac-4c49-a7c6-a96d10bfb37a" name="Changes" comment="Added super class LibraryObject which will be the main object the other products in the api.&#10;Added the subclass Book.">
+    <list default="true" id="e4f7e51d-8dac-4c49-a7c6-a96d10bfb37a" name="Changes" comment="Updated and fixed the following tests:&#10;&#10;-&gt; testCreation_of_book&#10;-&gt; testUpdateTagsValidInput&#10;-&gt; testUpdateTagsInvalidInput&#10;-&gt; testAddTags&#10;&#10;Also added a new private method to process data coming to the object.&#10;&#10;Edited updateTags method, so it doesn't just look like a setTags method copy,&#10;now actually iterates through two arrays and updates existing tags with the new&#10;values.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/moondrop/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/moondrop/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/moondrop/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/moondrop/entity/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/moondrop/entity/BookTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/moondrop/entity/BookTest.java" afterDir="false" />
     </list>
@@ -60,22 +58,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BookTest.testAddTags" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Library" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.moondrop.entity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.moondrop.entity" />
-      <option name="MAIN_CLASS_NAME" value="org.moondrop.entity.BookTest" />
-      <option name="METHOD_NAME" value="testAddTags" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="BookTest.testCreation_of_book" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Library" />
       <extension name="coverage">
@@ -87,6 +69,22 @@
       <option name="PACKAGE_NAME" value="org.moondrop.entity" />
       <option name="MAIN_CLASS_NAME" value="org.moondrop.entity.BookTest" />
       <option name="METHOD_NAME" value="testCreation_of_book" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookTest.testRemoveFromTags" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.moondrop.entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.moondrop.entity" />
+      <option name="MAIN_CLASS_NAME" value="org.moondrop.entity.BookTest" />
+      <option name="METHOD_NAME" value="testRemoveFromTags" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -127,10 +125,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.BookTest" />
+        <item itemvalue="JUnit.BookTest.testRemoveFromTags" />
         <item itemvalue="JUnit.BookTest.testUpdateTagsValidInput" />
         <item itemvalue="JUnit.BookTest.testCreation_of_book" />
         <item itemvalue="JUnit.BookTest.testUpdateTagsInvalidInput" />
-        <item itemvalue="JUnit.BookTest.testAddTags" />
       </list>
     </recent_temporary>
   </component>
@@ -161,7 +159,13 @@
       <option name="presentableId" value="LOCAL−00003" />
       <updated>1669926644819</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL−00004" summary="Updated and fixed the following tests:&#10;&#10;-&gt; testCreation_of_book&#10;-&gt; testUpdateTagsValidInput&#10;-&gt; testUpdateTagsInvalidInput&#10;-&gt; testAddTags&#10;&#10;Also added a new private method to process data coming to the object.&#10;&#10;Edited updateTags method, so it doesn't just look like a setTags method copy,&#10;now actually iterates through two arrays and updates existing tags with the new&#10;values.">
+      <created>1681578681094</created>
+      <option name="number" value="LOCAL−00004" />
+      <option name="presentableId" value="LOCAL−00004" />
+      <updated>1681578681094</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,7 +183,8 @@
     <MESSAGE value="Start of project&#10;&#10;Developers:&#10;Robin Ejderholt" />
     <MESSAGE value="Added ReadMe.md" />
     <MESSAGE value="Added super class LibraryObject which will be the main object the other products in the api.&#10;Added the subclass Book." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added super class LibraryObject which will be the main object the other products in the api.&#10;Added the subclass Book." />
+    <MESSAGE value="Updated and fixed the following tests:&#10;&#10;-&gt; testCreation_of_book&#10;-&gt; testUpdateTagsValidInput&#10;-&gt; testUpdateTagsInvalidInput&#10;-&gt; testAddTags&#10;&#10;Also added a new private method to process data coming to the object.&#10;&#10;Edited updateTags method, so it doesn't just look like a setTags method copy,&#10;now actually iterates through two arrays and updates existing tags with the new&#10;values." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated and fixed the following tests:&#10;&#10;-&gt; testCreation_of_book&#10;-&gt; testUpdateTagsValidInput&#10;-&gt; testUpdateTagsInvalidInput&#10;-&gt; testAddTags&#10;&#10;Also added a new private method to process data coming to the object.&#10;&#10;Edited updateTags method, so it doesn't just look like a setTags method copy,&#10;now actually iterates through two arrays and updates existing tags with the new&#10;values." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -137,9 +137,53 @@ public class BookTest {
 
     }
 
-//    @Test
-//    @DisplayName("")
-//
+    @Test
+    @DisplayName("test to remove existing tags")
+    public void testRemoveFromTags() {
+        String[] tags = new String[]{"Video Game", "MMORPG"};
+        String[] genre = new String[]{"Action", "Adventure"};
+        URI uri;
+        try {
+            uri = new URI("https://www.webnovelpub.com/novel/my-legendary-class-is-husband-of-deathwill-sisters-29111137");
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        Book temp_book = new Book("Java for dummies", "Learning guide for Java", uri, new Date(), 1, 20, tags, genre);
+
+        Assertions.assertEquals("[video game, mmorpg]", Arrays.toString(temp_book.getTags()));
+
+        temp_book.removeFromTags("video game");
+
+        Assertions.assertEquals("[mmorpg]", Arrays.toString(temp_book.getTags()));
+
+        // Test include null value as well as existing
+        temp_book.removeFromTags(null, "mmorpg", null);
+
+        Assertions.assertEquals("[]", Arrays.toString(temp_book.getTags()));
+    }
+
+    @Test
+    @DisplayName("test to remove non existing tags from the library object")
+    public void testRemoveFromTagsNonExisting() {
+        String[] tags = new String[]{"Video Game", "MMORPG"};
+        String[] genre = new String[]{"Action", "Adventure"};
+        URI uri;
+        try {
+            uri = new URI("https://www.webnovelpub.com/novel/my-legendary-class-is-husband-of-deathwill-sisters-29111137");
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        Book temp_book = new Book("Java for dummies", "Learning guide for Java", uri, new Date(), 1, 20, tags, genre);
+
+        Assertions.assertEquals("[video game, mmorpg]", Arrays.toString(temp_book.getTags()));
+
+        temp_book.removeFromTags("Adventure", "video game");
+
+        Assertions.assertEquals("[mmorpg]", Arrays.toString(temp_book.getTags()));
+    }
+
 //    @Test
 //    @DisplayName("Test is to check the method addToGenre is working as intended")
 //    public void testAddGenre() {
