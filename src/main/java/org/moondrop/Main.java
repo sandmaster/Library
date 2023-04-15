@@ -9,7 +9,9 @@ public class Main {
 
         Book book = new Book("Playboy", URI.create("https://novelbin.com/b/playboy-cultivator-in-the-apocalypse"),
                 130, new String[]{"Apocalypse"}, new String[]{"Harem", "Action", "Adventure"});
-        System.out.println();
+
         System.out.println(book.toString());
+
     }
+
 }

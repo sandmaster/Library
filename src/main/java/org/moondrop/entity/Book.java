@@ -17,13 +17,17 @@ public class Book extends LibraryObject {
         super(name);
         this.uri = uri;
         this.currentChapter = currentChapter;
-        this.tags = tags;
-        this.genres = genres;
+        this.tags = process_content(tags);
+        this.genres = process_content(genres);
     }
 
     public Book(String name, int currentChapter) {
         super(name);
         this.currentChapter = currentChapter;
+    }
+
+    public Book(String name) {
+        super(name);
     }
 
     public Book(String name, String description, URI uri, Date latestDateUpdated, int currentChapter, int chaptersAvailable, String[] tags, String[] genres) {
@@ -32,8 +36,103 @@ public class Book extends LibraryObject {
         this.latestDateUpdated = latestDateUpdated;
         this.currentChapter = currentChapter;
         this.chaptersAvailable = chaptersAvailable;
-        this.tags = tags;
-        this.genres = genres;
+        this.tags = process_content(tags);
+        this.genres = process_content(genres);
+    }
+
+    /**
+     * Process incoming tags, by removing empty values and
+     * make them all lower-case. Make sure duplicates are
+     * removed
+     * @param tags_to_be_processed the Strings to be processed
+     * @return the processed content, or null if process failed.
+     */
+    private String[] process_content(String[] tags_to_be_processed) {
+        String[] processed_tags = null;
+        if(tags_to_be_processed != null && tags_to_be_processed.length > 0) {
+            processed_tags = Arrays.stream(tags_to_be_processed)
+                    .filter(s -> (s != null && s.length() > 0))
+                    .map(String::toLowerCase)
+                    .distinct()
+                    .toArray(String[]::new);
+        }
+        return processed_tags;
+    }
+
+    /**
+     * Method to update tags for the book instance
+     * <br>
+     * Validates that the existing and replacing tags are
+     * the same size.
+     * Updates each existing index with the replacing array's index.
+     * <br>
+     * @param existing_tags the array with existing tags to be updated
+     * @param replacing_tags the array with values to replace with
+     */
+    public void updateTags(String[] existing_tags, String[] replacing_tags) {
+
+        String[] processed_existing = process_content(existing_tags);
+        String[] processed_replacing = process_content(replacing_tags);
+
+        if (existing_tags == null) {
+            return;
+        }
+
+        if (replacing_tags == null) {
+            return;
+        }
+
+        if (processed_existing == null) {
+            return;
+        }
+
+        if (processed_replacing == null) {
+            return;
+        }
+
+        if (existing_tags.length != replacing_tags.length) {
+            return;
+        }
+
+        int processed_existing_length = processed_existing.length;
+
+        for (int i = 0; i < tags.length; i++) {
+            for (int j = 0; j < processed_existing_length; j++) {
+                if (tags[i].equals(processed_existing[j])) {
+                    tags[i] = processed_replacing[j];
+                    break;
+                }
+            }
+        }
+
+    }
+
+    public boolean removeFromTags(String... tagsToRemove) {
+        return false;
+    }
+
+    /**
+     * Method to add n number of tags to the library object
+     * @param tagsToAdd the tags to be added
+     */
+    public void addToTags(String... tagsToAdd) {
+
+        int totalSize = tags.length + tagsToAdd.length;
+        String[] tagsArray = new String[totalSize];
+
+        System.arraycopy(tags, 0, tagsArray, 0, tags.length);
+
+        int argumentIterator = 0;
+
+        for(int j = tags.length; j < totalSize; j++) {
+            tagsArray[j] = tagsToAdd[argumentIterator];
+            argumentIterator++;
+        }
+
+        tags = tagsArray;
+
+        this.tags = process_content(tags);
+
     }
 
     public URI getUri() {
@@ -73,7 +172,7 @@ public class Book extends LibraryObject {
     }
 
     public void setTags(String[] tags) {
-        this.tags = tags;
+        this.tags = process_content(tags);
     }
 
     public String[] getGenres() {
@@ -81,7 +180,7 @@ public class Book extends LibraryObject {
     }
 
     public void setGenres(String[] genres) {
-        this.genres = genres;
+        this.genres = process_content(genres);
     }
 
     @Override
@@ -91,7 +190,7 @@ public class Book extends LibraryObject {
                 ", \nlatestDateUpdated = " + latestDateUpdated +
                 ", \ncurrentChapter = " + currentChapter +
                 ", \nchaptersAvailable = " + chaptersAvailable +
-                ", \ntags = " + Arrays.toString(tags) +
-                ", \ngenres = " + Arrays.toString(genres);
+                ", \ntags = " + Arrays.toString(tags).replace("[", "").replace("]", "") +
+                ", \ngenres = " + Arrays.toString(genres).replace("[", "").replace("]", "");
     }
 }
