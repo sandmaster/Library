@@ -184,10 +184,73 @@ public class BookTest {
         Assertions.assertEquals("[mmorpg]", Arrays.toString(temp_book.getTags()));
     }
 
-//    @Test
-//    @DisplayName("Test is to check the method addToGenre is working as intended")
-//    public void testAddGenre() {
-//
-//    }
+    @Test
+    @DisplayName("Test is to check the method addToGenre is working as intended")
+    public void testAddGenre() {
+        Book book = new Book("Genres", 1);
+        book.setGenres(new String[]{"fantasy", "adventure"});
+
+        Assertions.assertEquals("[fantasy, adventure]", Arrays.toString(book.getGenres()));
+
+        book.addToGenre("Urban");
+
+        Assertions.assertEquals("[fantasy, adventure, urban]", Arrays.toString(book.getGenres()));
+
+        book.addToGenre("RPG", "");
+
+        Assertions.assertEquals("[fantasy, adventure, urban, rpg]", Arrays.toString(book.getGenres()));
+
+        book.addToGenre(null, "MMORPG");
+
+        Assertions.assertEquals("[fantasy, adventure, urban, rpg, mmorpg]", Arrays.toString(book.getGenres()));
+
+    }
+
+    @Test
+    @DisplayName("test to remove existing tags")
+    public void testRemoveFromGenres() {
+        String[] genre = new String[]{"Video Game", "MMORPG"};
+        String[] tags = new String[]{"Action", "Adventure"};
+        URI uri;
+        try {
+            uri = new URI("https://www.webnovelpub.com/novel/my-legendary-class-is-husband-of-deathwill-sisters-29111137");
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        Book temp_book = new Book("Java for dummies", "Learning guide for Java", uri, new Date(), 1, 20, tags, genre);
+
+        Assertions.assertEquals("[video game, mmorpg]", Arrays.toString(temp_book.getGenres()));
+
+        temp_book.removeFromGenres("video game");
+
+        Assertions.assertEquals("[mmorpg]", Arrays.toString(temp_book.getGenres()));
+
+        // Test include null value as well as existing
+        temp_book.removeFromGenres(null, "mmorpg", null);
+
+        Assertions.assertEquals("[]", Arrays.toString(temp_book.getGenres()));
+    }
+
+    @Test
+    @DisplayName("test to remove non existing tags from the library object")
+    public void testRemoveFromGenresNonExisting() {
+        String[] genre = new String[]{"Video Game", "MMORPG"};
+        String[] tags = new String[]{"Action", "Adventure"};
+        URI uri;
+        try {
+            uri = new URI("https://www.webnovelpub.com/novel/my-legendary-class-is-husband-of-deathwill-sisters-29111137");
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        Book temp_book = new Book("Java for dummies", "Learning guide for Java", uri, new Date(), 1, 20, tags, genre);
+
+        Assertions.assertEquals("[video game, mmorpg]", Arrays.toString(temp_book.getGenres()));
+
+        temp_book.removeFromGenres("Adventure", "video game");
+
+        Assertions.assertEquals("[mmorpg]", Arrays.toString(temp_book.getGenres()));
+    }
 
 }

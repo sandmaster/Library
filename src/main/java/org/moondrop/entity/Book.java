@@ -124,6 +124,22 @@ public class Book extends LibraryObject {
         tags = tag_list.toArray(new String[0]);
 
     }
+    /**
+     * method to remove n number of genres from the object.
+     * Only removes existing genres.
+     * @param genresToRemove the genres to remove
+     */
+    public void removeFromGenres(String... genresToRemove) {
+
+        LinkedList<String> genre_list = new LinkedList<>(Arrays.asList(genres));
+        String[] process_incoming = process_content(genresToRemove);
+        for (String tag : process_incoming) {
+            genre_list.remove(tag);
+        }
+
+        genres = genre_list.toArray(new String[0]);
+
+    }
 
     /**
      * Method to add n number of tags to the library object
@@ -147,6 +163,28 @@ public class Book extends LibraryObject {
 
         this.tags = process_content(tags);
 
+    }
+    /**
+     * Method to add n number of genres to the library object
+     * @param genreToAdd the genres to be added
+     */
+    public void addToGenre(String... genreToAdd) {
+
+        int totalSize = genres.length + genreToAdd.length;
+        String[] genresArray = new String[totalSize];
+
+        System.arraycopy(genres, 0, genresArray, 0, genres.length);
+
+        int argumentIterator = 0;
+
+        for(int j = genres.length; j < totalSize; j++) {
+            genresArray[j] = genreToAdd[argumentIterator];
+            argumentIterator++;
+        }
+
+        genres = genresArray;
+
+        this.genres = process_content(genres);
     }
 
     public URI getUri() {
