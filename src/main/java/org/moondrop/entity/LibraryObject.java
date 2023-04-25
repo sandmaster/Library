@@ -1,5 +1,9 @@
 package org.moondrop.entity;
 
+/**
+ * Super class extended to subclasses for each type of object
+ * represented as a LibraryObject. Could be a book, movie or something else.
+ */
 public class LibraryObject {
 
     private final String libraryName;

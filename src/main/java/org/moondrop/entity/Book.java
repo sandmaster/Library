@@ -5,6 +5,12 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 
+/**
+ * Object representing a Book Library Object.
+ *
+ * @version 0.1
+ * @since 0.1
+ */
 public class Book extends LibraryObject {
 
     private URI uri;
@@ -239,10 +245,10 @@ public class Book extends LibraryObject {
     public String toString() {
         return "\nBook:" +
                 "\nuri = " + uri +
-                ", \nlatestDateUpdated = " + latestDateUpdated +
-                ", \ncurrentChapter = " + currentChapter +
-                ", \nchaptersAvailable = " + chaptersAvailable +
-                ", \ntags = " + Arrays.toString(tags).replace("[", "").replace("]", "") +
-                ", \ngenres = " + Arrays.toString(genres).replace("[", "").replace("]", "");
+                " \nlatestDateUpdated = " + latestDateUpdated +
+                " \ncurrentChapter = " + currentChapter +
+                " \nchaptersAvailable = " + chaptersAvailable +
+                " \ntags = " + Arrays.toString(tags).replace("[", "").replace("]", "") +
+                " \ngenres = " + Arrays.toString(genres).replace("[", "").replace("]", "");
     }
 }

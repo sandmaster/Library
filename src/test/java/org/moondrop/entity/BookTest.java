@@ -253,4 +253,26 @@ public class BookTest {
         Assertions.assertEquals("[mmorpg]", Arrays.toString(temp_book.getGenres()));
     }
 
+    @Test
+    @DisplayName("test setters and getters of the Book class")
+    public void testBook() throws URISyntaxException {
+        Book book = new Book("Twilight", 1);
+
+        book.setUri(new URI("Http://www.eclipse.co"));
+        Assertions.assertEquals("Http://www.eclipse.co", book.getUri().toString());
+
+        book.setChaptersAvailable(20);
+        Assertions.assertEquals(20, book.getChaptersAvailable());
+
+        book.setCurrentChapter(10);
+        Assertions.assertEquals(10, book.getCurrentChapter());
+
+        Date d = new Date();
+
+        book.setLatestDateUpdated(d);
+        Assertions.assertEquals(d, book.getLatestDateUpdated());
+
+
+    }
+
 }
